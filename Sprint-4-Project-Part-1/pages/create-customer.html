@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Customer</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+  </head>
+  <body>
+    <header>Bank Management System</header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="customers.html">Customers Management Tool</a></li>
+          <li><a href="accounts.html">Accounts Management Tool</a></li>
+        </ul>
+      </nav>
+      <main>
+        <h2>Create Customer</h2>
+        <form action="customers.html" method="GET">
+          <label for="customer-id">Customer ID</label>
+          <input
+            type="text"
+            id="customer-id"
+            name="customer-id"
+            value="1000"
+            readonly
+          />
+
+          <label for="type">Customer Type</label>
+          <select id="type" name="type" required>
+            <option value="person">Person</option>
+            <option value="company">Company</option>
+          </select>
+
+          <label for="name">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter customer's name"
+            required
+          />
+
+          <h3>Address Details</h3>
+          <label for="street">Street</label>
+          <input
+            type="text"
+            id="street"
+            name="street"
+            placeholder="Enter street and number"
+            required
+          />
+
+          <label for="postal-code">Postal Code</label>
+          <input
+            type="text"
+            id="postal-code"
+            name="postal-code"
+            placeholder="Enter postal code"
+            required
+          />
+
+          <label for="city">City</label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            placeholder="Enter city"
+            required
+          />
+
+          <label for="province">Province</label>
+          <input
+            type="text"
+            id="province"
+            name="province"
+            placeholder="Enter province"
+            required
+          />
+
+          <button type="submit" class="btn-save">Save</button>
+          <a href="customers.html" class="btn cancel-btn">Cancel</a>
+        </form>
+      </main>
+    </div>
+    <footer>
+      <p>&copy; 2024 Bank Management System</p>
+    </footer>
+  </body>
+</html>

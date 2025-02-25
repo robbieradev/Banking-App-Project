@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accounts</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script>
+      function confirmDelete(accountId) {
+        const confirmation = confirm(
+          `Are you sure you want to delete account ${accountId}?`
+        );
+        if (confirmation) {
+          alert(`Account ${accountId} has been deleted.`);
+          const row = document.querySelector(
+            `[data-account-id="${accountId}"]`
+          );
+          if (row) row.remove();
+        }
+      }
+
+      function searchAccountById() {
+        const searchValue = document
+          .querySelector(".search-bar")
+          .value.toLowerCase();
+        const rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach((row) => {
+          const accountId = row.querySelector("td").textContent.toLowerCase();
+          row.style.display =
+            accountId.includes(searchValue) || searchValue === "" ? "" : "none";
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <header>Bank Management System</header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="customers.html">Customers Management Tool</a></li>
+          <li><a href="accounts.html">Accounts Management Tool</a></li>
+        </ul>
+      </nav>
+      <main>
+        <h2>Accounts</h2>
+        <p>Manage your customers' accounts using the options below:</p>
+        <a href="create-account.html" class="btn-add">Create Account</a>
+
+        <input
+          type="text"
+          class="search-bar"
+          placeholder="Search Account's ID"
+          onkeyup="searchAccountById()"
+        />
+
+        <h3>View All Accounts</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Account ID</th>
+              <th>Account Type</th>
+              <th>Account Balance</th>
+              <th>Customer ID</th>
+              <th>Customer Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-account-id="1">
+              <td>1</td>
+              <td>Savings</td>
+              <td>£1,500.00</td>
+              <td>1001</td>
+              <td>Robert Radev</td>
+              <td>
+                <a href="view-account.html?id=1" class="btn btn-view">View</a>
+                <a href="update-account.html?id=1" class="btn btn-update"
+                  >Update</a
+                >
+                <button class="btn btn-delete" onclick="confirmDelete(1)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+            <tr data-account-id="2">
+              <td>2</td>
+              <td>Current</td>
+              <td>£3,200.00</td>
+              <td>1002</td>
+              <td>Edgar Afonso</td>
+              <td>
+                <a href="view-account.html?id=2" class="btn btn-view">View</a>
+                <a href="update-account.html?id=2" class="btn btn-update"
+                  >Update</a
+                >
+                <button class="btn btn-delete" onclick="confirmDelete(2)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+    </div>
+    <footer>
+      <p>&copy; 2024 Bank Management System</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Details</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script>
+      // Simulated account and customer data
+      const accounts = {
+        1: {
+          id: "1",
+          type: "Savings Account",
+          balance: "1500.00",
+          interestRate: "1.5",
+          nextCheckNumber: null,
+          customerId: "1001",
+          customerName: "Robert Radev",
+        },
+        2: {
+          id: "2",
+          type: "Checking Account",
+          balance: "800.00",
+          interestRate: null,
+          nextCheckNumber: "120",
+          customerId: "1002",
+          customerName: "Edgar Afonso",
+        },
+        3: {
+          id: "3",
+          type: "Savings Account",
+          balance: "1500.00",
+          interestRate: "1.5",
+          nextCheckNumber: null,
+          customerId: "1001",
+          customerName: "Robert Radev",
+        },
+        4: {
+          id: "4",
+          type: "Checking Account",
+          balance: "3200.00",
+          interestRate: null,
+          nextCheckNumber: "200",
+          customerId: "1002",
+          customerName: "Edgar Afonso",
+        },
+      };
+
+      function populateAccountDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const accountId = urlParams.get("id");
+
+        if (accountId && accounts[accountId]) {
+          const account = accounts[accountId];
+
+          // Populate account info
+          document.getElementById("account-id").textContent = account.id;
+          document.getElementById("account-type").textContent = account.type;
+          document.getElementById(
+            "account-balance"
+          ).textContent = `£${account.balance}`;
+
+          if (account.type === "Savings Account") {
+            document.getElementById(
+              "savings-interest"
+            ).textContent = `${account.interestRate}%`;
+            document.getElementById("savings-details").style.display = "block";
+          } else if (account.type === "Checking Account") {
+            document.getElementById("checking-number").textContent =
+              account.nextCheckNumber;
+            document.getElementById("checking-details").style.display = "block";
+          }
+
+          document.getElementById(
+            "customer-link"
+          ).href = `view-customer.html?id=${account.customerId}`;
+          document.getElementById("customer-name").textContent =
+            account.customerName;
+        } else {
+          alert("Invalid account ID!");
+        }
+      }
+
+      window.onload = populateAccountDetails;
+    </script>
+  </head>
+  <body>
+    <header>Bank Management System</header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="customers.html">Customers Management Tool</a></li>
+          <li><a href="accounts.html">Accounts Management Tool</a></li>
+        </ul>
+      </nav>
+      <main>
+        <h2>Account Details</h2>
+        <div class="details-container">
+          <p><strong>Account ID:</strong> <span id="account-id"></span></p>
+          <p><strong>Type:</strong> <span id="account-type"></span></p>
+          <p><strong>Balance:</strong> <span id="account-balance"></span></p>
+
+          <div id="savings-details" style="display: none">
+            <p>
+              <strong>Interest Rate:</strong>
+              <span id="savings-interest"></span>
+            </p>
+          </div>
+          <div id="checking-details" style="display: none">
+            <p>
+              <strong>Next Check Number:</strong>
+              <span id="checking-number"></span>
+            </p>
+          </div>
+
+          <h3>Associated Customer</h3>
+          <p>
+            <a id="customer-link" href="#" class="btn btn-view"
+              ><span id="customer-name"></span
+            ></a>
+          </p>
+        </div>
+        <button class="btn-go-back" onclick="history.back()">Go Back</button>
+      </main>
+    </div>
+    <footer>
+      <p>&copy; 2024 Bank Management System</p>
+    </footer>
+  </body>
+</html>

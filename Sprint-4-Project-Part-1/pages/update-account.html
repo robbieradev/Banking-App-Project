@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Account</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script>
+      // Account data simulation
+      const accounts = {
+        1: {
+          id: "1",
+          type: "Savings Account",
+          balance: "1500.00",
+          interestRate: "1.5",
+          nextCheckNumber: null,
+          customerId: "1001",
+          customerName: "Robert Radev",
+        },
+        2: {
+          id: "2",
+          type: "Checking Account",
+          balance: "800.00",
+          interestRate: null,
+          nextCheckNumber: "120",
+          customerId: "1002",
+          customerName: "Edgar Afonso",
+        },
+        3: {
+          id: "3",
+          type: "Savings Account",
+          balance: "1500.00",
+          interestRate: "1.5",
+          nextCheckNumber: null,
+          customerId: "1001",
+          customerName: "Robert Radev",
+        },
+        4: {
+          id: "4",
+          type: "Checking Account",
+          balance: "3200.00",
+          interestRate: null,
+          nextCheckNumber: "200",
+          customerId: "1002",
+          customerName: "Edgar Afonso",
+        },
+      };
+
+      // Function to populate the form based on query parameter
+      function populateForm() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const accountId = urlParams.get("id");
+
+        if (accountId && accounts[accountId]) {
+          const account = accounts[accountId];
+
+          // Populate form fields
+          document.getElementById("account-id").value = account.id;
+          document.getElementById("account-type").value = account.type;
+          document.getElementById("account-balance").value = account.balance;
+          document.getElementById("customer-id").value = account.customerId;
+          document.getElementById("customer-name").value = account.customerName;
+
+          // Toggle type-specific fields
+          if (account.type === "savings") {
+            document.getElementById("savings-fields").style.display = "block";
+            document.getElementById("checking-fields").style.display = "none";
+            document.getElementById("interest-rate").value =
+              account.interestRate;
+          } else if (account.type === "checking") {
+            document.getElementById("checking-fields").style.display = "block";
+            document.getElementById("savings-fields").style.display = "none";
+            document.getElementById("next-check-number").value =
+              account.nextCheckNumber;
+          }
+        } else {
+          alert("Invalid account ID!");
+        }
+      }
+
+      // Load data when the page is ready
+      window.onload = populateForm;
+    </script>
+  </head>
+  <body>
+    <header>Bank Management System</header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="customers.html">Customers Management Tool</a></li>
+          <li><a href="accounts.html">Accounts Management Tool</a></li>
+        </ul>
+      </nav>
+      <main>
+        <h2>Update Account</h2>
+        <form action="accounts.html" method="GET">
+          <label for="account-id">Account ID</label>
+          <input type="text" id="account-id" name="account-id" readonly />
+
+          <label for="customer-id">Customer ID</label>
+          <input type="text" id="customer-id" name="customer-id" readonly />
+
+          <label for="customer-name">Customer Name</label>
+          <input type="text" id="customer-name" name="customer-name" readonly />
+
+          <label for="account-type">Account Type</label>
+          <select id="account-type" name="account-type" disabled>
+            <option value="savings">Savings Account</option>
+            <option value="checking">Checking Account</option>
+          </select>
+
+          <label for="account-balance">Account Balance</label>
+          <input
+            type="text"
+            id="account-balance"
+            name="account-balance"
+            placeholder="Enter account balance"
+            required
+          />
+
+          <div id="savings-fields" style="display: none">
+            <label for="interest-rate">Interest Rate</label>
+            <input
+              type="text"
+              id="interest-rate"
+              name="interest-rate"
+              placeholder="Enter interest rate"
+            />
+          </div>
+
+          <div id="checking-fields" style="display: none">
+            <label for="next-check-number">Next Check Number</label>
+            <input
+              type="text"
+              id="next-check-number"
+              name="next-check-number"
+              placeholder="Enter next check number"
+            />
+          </div>
+
+          <button type="submit" class="btn-save">Save</button>
+          <a href="accounts.html" class="btn cancel-btn">Cancel</a>
+        </form>
+      </main>
+    </div>
+    <footer>
+      <p>&copy; 2024 Bank Management System</p>
+    </footer>
+  </body>
+</html>

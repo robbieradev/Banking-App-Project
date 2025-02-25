@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Customer</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script>
+      // Customer data simulation
+      const customers = {
+        1001: {
+          id: "1001",
+          name: "Robert Radev",
+          type: "person",
+          street: "456 High Street",
+          postalCode: "B2C 3D4",
+          city: "Edinburgh",
+          province: "Scotland",
+        },
+        1002: {
+          id: "1002",
+          name: "Edgar Afonso",
+          type: "company",
+          street: "123 Main Street",
+          postalCode: "A1B 2C3",
+          city: "Glasgow",
+          province: "Scotland",
+        },
+      };
+
+      // Function to populate the form based on query parameter
+      function populateForm() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const customerId = urlParams.get("id");
+
+        if (customerId && customers[customerId]) {
+          const customer = customers[customerId];
+
+          // Populate form fields
+          document.getElementById("customer-id").value = customer.id;
+          document.getElementById("name").value = customer.name;
+          document.getElementById("type").value = customer.type;
+          document.getElementById("street").value = customer.street;
+          document.getElementById("postal-code").value = customer.postalCode;
+          document.getElementById("city").value = customer.city;
+          document.getElementById("province").value = customer.province;
+        } else {
+          alert("Invalid customer ID!");
+        }
+      }
+
+      // Load data when the page is ready
+      window.onload = populateForm;
+    </script>
+  </head>
+  <body>
+    <header>Bank Management System</header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="customers.html">Customers Management Tool</a></li>
+          <li><a href="accounts.html">Accounts Management Tool</a></li>
+        </ul>
+      </nav>
+      <main>
+        <h2>Update Customer</h2>
+        <form action="customers.html" method="GET">
+          <label for="customer-id">Customer ID</label>
+          <input type="text" id="customer-id" name="customer-id" readonly />
+
+          <label for="type">Customer Type</label>
+          <select id="type" name="type" required>
+            <option value="person">Person</option>
+            <option value="company">Company</option>
+          </select>
+
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required />
+
+          <h3>Address Details</h3>
+          <label for="street">Street</label>
+          <input type="text" id="street" name="street" required />
+
+          <label for="postal-code">Postal Code</label>
+          <input type="text" id="postal-code" name="postal-code" required />
+
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" required />
+
+          <label for="province">Province</label>
+          <input type="text" id="province" name="province" required />
+
+          <button type="submit" class="btn-save">Save</button>
+          <a href="customers.html" class="btn cancel-btn">Cancel</a>
+        </form>
+      </main>
+    </div>
+    <footer>
+      <p>&copy; 2024 Bank Management System</p>
+    </footer>
+  </body>
+</html>

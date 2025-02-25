@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customers Page</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script>
+      function confirmDelete(customerName) {
+        const confirmation = confirm(
+          `Are you sure you want to delete ${customerName} and all associated accounts?`
+        );
+        if (confirmation) {
+          alert(`${customerName} has been deleted.`);
+          const row = document.querySelector(
+            `[data-customer-name="${customerName}"]`
+          );
+          if (row) row.remove();
+        }
+      }
+
+      function searchCustomerById() {
+        const searchValue = document
+          .querySelector(".search-bar")
+          .value.toLowerCase();
+        const rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach((row) => {
+          const customerId = row.querySelector("td").textContent.toLowerCase();
+          row.style.display =
+            customerId.includes(searchValue) || searchValue === ""
+              ? ""
+              : "none";
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <header>Bank Management System</header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="customers.html">Customers Management Tool</a></li>
+          <li><a href="accounts.html">Accounts Management Tool</a></li>
+        </ul>
+      </nav>
+      <main>
+        <h2>Customers</h2>
+        <p>Manage your customers using the options below:</p>
+        <a href="create-customer.html" class="btn-add">Create Customer</a>
+
+        <input
+          type="text"
+          class="search-bar"
+          placeholder="Search Customer's ID"
+          onkeyup="searchCustomerById()"
+        />
+
+        <h3>View All Customers</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Customer ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-customer-name="Robert Radev">
+              <td>1001</td>
+              <td>Robert Radev</td>
+              <td>Robert.Radev@fdmgroup.com</td>
+              <td>07999 215377</td>
+              <td>
+                <a href="view-customer.html?id=1001" class="btn btn-view"
+                  >View</a
+                >
+                <a href="update-customer.html?id=1001" class="btn btn-update"
+                  >Update</a
+                >
+                <button
+                  onclick="confirmDelete('Robert Radev')"
+                  class="btn btn-delete"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+            <tr data-customer-name="Edgar Afonso">
+              <td>1002</td>
+              <td>Edgar Afonso</td>
+              <td>Edgar.Afonso@fdmgroup.com</td>
+              <td>07123 456789</td>
+              <td>
+                <a href="view-customer.html?id=1002" class="btn btn-view"
+                  >View</a
+                >
+                <a href="update-customer.html?id=1002" class="btn btn-update"
+                  >Update</a
+                >
+                <button
+                  onclick="confirmDelete('Edgar Afonso')"
+                  class="btn btn-delete"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+    </div>
+    <footer>
+      <p>&copy; 2024 Bank Management System</p>
+    </footer>
+  </body>
+</html>

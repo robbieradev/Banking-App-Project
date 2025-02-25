@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <style>
+      .account-type-fields {
+        display: none;
+      }
+
+      .account-type-fields.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <header>Bank Management System</header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="customers.html">Customers Management Tool</a></li>
+          <li><a href="accounts.html">Accounts Management Tool</a></li>
+        </ul>
+      </nav>
+      <main>
+        <h2>Create Account</h2>
+        <form action="accounts.html" method="GET">
+          <label for="account-id">Account ID</label>
+          <input
+            type="text"
+            id="account-id"
+            name="account-id"
+            value="1"
+            readonly
+          />
+
+          <label for="customer">Select Customer</label>
+          <select id="customer" name="customer" required>
+            <option value="1001">1001 - Robert Radev</option>
+            <option value="1002">1002 - Edgar Afonso</option>
+          </select>
+
+          <label for="account-type">Account Type</label>
+          <select
+            id="account-type"
+            name="account-type"
+            onchange="toggleFields(this.value)"
+            required
+          >
+            <option value="savings" selected>Savings Account</option>
+            <option value="checking">Checking Account</option>
+          </select>
+
+          <!-- Savings Account Fields -->
+          <div id="savings-fields" class="account-type-fields active">
+            <label for="interest-rate">Interest Rate</label>
+            <input
+              type="text"
+              id="interest-rate"
+              name="interest-rate"
+              placeholder="Enter interest rate (e.g., 1.5%)"
+              required
+            />
+          </div>
+
+          <!-- Checking Account Fields -->
+          <div id="checking-fields" class="account-type-fields">
+            <label for="next-check-number">Next Check Number</label>
+            <input
+              type="text"
+              id="next-check-number"
+              name="next-check-number"
+              placeholder="Enter next check number"
+              required
+            />
+          </div>
+
+          <label for="account-balance">Account Balance</label>
+          <input
+            type="text"
+            id="account-balance"
+            name="account-balance"
+            placeholder="Enter account balance"
+            required
+          />
+
+          <button type="submit" class="btn-save">Save</button>
+          <a href="accounts.html" class="btn cancel-btn">Cancel</a>
+        </form>
+      </main>
+    </div>
+    <footer>
+      <p>&copy; 2024 Bank Management System</p>
+    </footer>
+    <script>
+      function toggleFields(accountType) {
+        // Hide both field groups
+        document.getElementById("savings-fields").classList.remove("active");
+        document.getElementById("checking-fields").classList.remove("active");
+
+        // Show the selected field group
+        if (accountType === "savings") {
+          document.getElementById("savings-fields").classList.add("active");
+        } else if (accountType === "checking") {
+          document.getElementById("checking-fields").classList.add("active");
+        }
+      }
+
+      // Initialize the form with the default selection
+      window.onload = function () {
+        toggleFields(document.getElementById("account-type").value);
+      };
+    </script>
+  </body>
+</html>

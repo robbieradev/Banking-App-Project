@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Details</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script>
+      // Simulated customer and accounts data
+      const customers = {
+        1001: {
+          id: "1001",
+          name: "Robert Radev",
+          type: "Person",
+          street: "456 High Street",
+          postalCode: "B2C 3D4",
+          city: "Edinburgh",
+          province: "Scotland",
+          accounts: [
+            { id: "1", type: "Savings Account", balance: "1500.00" },
+            { id: "2", type: "Checking Account", balance: "800.00" },
+          ],
+        },
+        1002: {
+          id: "1002",
+          name: "Edgar Afonso",
+          type: "Company",
+          street: "123 Main Street",
+          postalCode: "A1B 2C3",
+          city: "Glasgow",
+          province: "Scotland",
+          accounts: [
+            { id: "3", type: "Savings Account", balance: "1500.00" },
+            { id: "4", type: "Checking Account", balance: "3200.00" },
+          ],
+        },
+      };
+
+      function populateCustomerDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const customerId = urlParams.get("id");
+
+        if (customerId && customers[customerId]) {
+          const customer = customers[customerId];
+
+          // Populate customer info
+          document.getElementById("customer-id").textContent = customer.id;
+          document.getElementById("customer-name").textContent = customer.name;
+          document.getElementById("customer-type").textContent = customer.type;
+          document.getElementById(
+            "customer-address"
+          ).textContent = `${customer.street}, ${customer.city}, ${customer.province}, ${customer.postalCode}`;
+
+          // Populate accounts table
+          const accountsTable = document.getElementById("accounts-table-body");
+          accountsTable.innerHTML = ""; // Clear any previous rows
+          customer.accounts.forEach((account) => {
+            const row = `
+              <tr data-account-id="${account.id}">
+                <td>${account.id}</td>
+                <td>${account.type}</td>
+                <td>£${account.balance}</td>
+                <td>
+                  <a href="view-account.html?id=${account.id}" class="btn btn-view">View</a>
+                  <a href="update-account.html?id=${account.id}" class="btn btn-update">Update</a>
+                  <button class="btn btn-delete" onclick="confirmDelete(${account.id})">Delete</button>
+                </td>
+              </tr>`;
+            accountsTable.insertAdjacentHTML("beforeend", row);
+          });
+        } else {
+          alert("Invalid customer ID!");
+        }
+      }
+
+      function confirmDelete(accountId) {
+        const confirmation = confirm(
+          `Are you sure you want to delete account ${accountId}?`
+        );
+        if (confirmation) {
+          alert(`Account ${accountId} has been deleted.`);
+          // Simulate deletion by removing the row
+          const row = document.querySelector(
+            `[data-account-id="${accountId}"]`
+          );
+          if (row) row.remove();
+        }
+      }
+
+      window.onload = populateCustomerDetails;
+    </script>
+  </head>
+  <body>
+    <header>Bank Management System</header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="customers.html">Customers Management Tool</a></li>
+          <li><a href="accounts.html">Accounts Management Tool</a></li>
+        </ul>
+      </nav>
+      <main>
+        <h2>Customer Details</h2>
+        <p><strong>Customer ID:</strong> <span id="customer-id"></span></p>
+        <p><strong>Name:</strong> <span id="customer-name"></span></p>
+        <p><strong>Type:</strong> <span id="customer-type"></span></p>
+        <p><strong>Address:</strong> <span id="customer-address"></span></p>
+
+        <h3>Accounts</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Account ID</th>
+              <th>Account Type</th>
+              <th>Balance</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="accounts-table-body"></tbody>
+        </table>
+        <button class="btn-go-back" onclick="history.back()">Go Back</button>
+      </main>
+    </div>
+    <footer>
+      <p>&copy; 2024 Bank Management System</p>
+    </footer>
+  </body>
+</html>
