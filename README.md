@@ -1,24 +1,24 @@
-# A React Application running with a Spring Back End Application for Banking Customer and Account Management
+# Banking Management System with React Frontend and Spring Boot Backend
 
-This project is split into two separate repositories:
+This project is a full-stack application designed for managing banking customers and their accounts. It consists of two main components:
 
-- **Frontend:** A React application that provides a user-friendly interface for managing customers and accounts.
-- **Backend:** A Spring Boot application that exposes RESTful APIs for customer and account management and uses H2 as its database.
+- **Frontend:** A React-based user interface that allows seamless interaction with customer and account data.
+- **Backend:** A Spring Boot application that provides RESTful APIs for managing customer and account information, powered by an H2 database.
 
 ---
 
-## Repositories
+## Project Overview
 
 - **Repository:**  
-  [basic-banking-frontend](https://github.com/robbieradev/Banking-App-Project)
+  [Banking-App-Project](https://github.com/robbieradev/Banking-App-Project)
 
 ---
 
 ## Table of Contents
 
 1. [Installation](#installation)
-    - [Frontend Installation](#frontend-installation)
-    - [Backend Installation](#backend-installation)
+    - [Frontend Setup](#frontend-setup)
+    - [Backend Setup](#backend-setup)
 2. [Usage](#usage)
 3. [Features](#features)
 4. [Technologies](#technologies)
@@ -29,28 +29,43 @@ This project is split into two separate repositories:
 
 ## Installation
 
-### Frontend Installation
+### Frontend Setup
 
 1. **Clone the Frontend Repository:**
     ```bash
     git clone https://github.com/robbieradev/Banking-App-Project.git
     ```
 
-2. **Navigate to the Project Folder:**
+2. **Navigate to the Frontend Directory:**
     ```bash
-    cd banking-app-project
+    cd banking-app-project/frontend
     ```
 
-3. **Install Dependencies:**
+3. **Install Required Dependencies:**
     ```bash
     npm install
     ```
 
-4. **Run the Application:**
+4. **Start the Development Server:**
     ```bash
     npm start
     ```
-    This will start the development server and open the application in your default web browser.
+    This will launch the application in your default browser.
+
+---
+
+### Backend Setup
+
+1. **Navigate to the Backend Directory:**
+    ```bash
+    cd banking-app-project/backend
+    ```
+
+2. **Build and Run the Spring Boot Application:**
+
+   Using Maven:
+   ```bash
+   mvn spring-boot:run
 
 ---
 
