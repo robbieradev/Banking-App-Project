@@ -89,54 +89,53 @@ This project is a full-stack application designed for managing banking customers
 Once the app is running, you can interact with the following features:
 
 1. **Customers**:
-   - Add, update, delete, and search customers by various criteria (ID, name, city, postal code, province).
-   
+   - Add new customers.
+   - Update or delete existing customer records.
+   - Search for customers using ID, name, city, postal code, or province filters.
+
 2. **Accounts**:
-   - Add, update, delete, and search accounts using different filters (account ID, customer ID, city, balance).
+   - Create new accounts.
+   - Modify or remove existing accounts.
+   - Search for accounts by account ID, customer ID, city, or balance.
    
 3. **Search Functionality**:
-   - You can search for customers or accounts with a live search feature that updates results as you type.
+   - The application features a dynamic search functionality that updates results in real-time as you type.
 
 ---
 
 ## Features
 
 - **Customer Management**:
-  - Add new customers
-  - Edit customer details
-  - Delete customers
-  - Search customers by ID, name, city, postal code, or province
+  - Add, edit, and delete customer records.
+  - Search for customers by ID, name, city, postal code, or province.
   
 - **Account Management**:
-  - Add new accounts
-  - Edit account details
-  - Delete accounts
-  - Search accounts by ID, customer ID, city, or balance
+  - Add, edit, and delete account records.
+  - Search for accounts by ID, customer ID, city, or balance
 
 ---
 
 ## Technologies
 
-This application uses the following technologies:
+This project leverages the following technologies:
 
 - **Frontend**:
-  - React
-  - JavaScript (ES6+)
-  - React Hooks (useState, useEffect)
-  - Bootstrap (for responsive design)
-  - Axios (for API requests)
+  - React for building the user interface.
+  - JavaScript (ES6+) for dynamic functionality.
+  - React Hooks (useState, useEffect) for state management.
+  - Bootstrap for responsive and modern styling.
+  - Axios for handling API requests.
   
 - **Backend**:
-  - Spring Boot
-  - Java
-  - RESTful API design
-  - H2 Database
+  - Spring Boot for building robust RESTful APIs.
+  - Java for backend logic.
+  - H2 Database for lightweight and efficient data storage.
 
 ---
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. For more details, refer to the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -149,4 +148,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-- Contributions are welcome! Please submit a pull request to contribute to the project.
+## Contact
+
+For questions or feedback, feel free to reach out:
+- **Name**: Robbie Radev
+- **Email**: robbie.radev@gmail.com
+- **GitHub**: [RobbieRadev](https://github.com/robbieradev)
+
+---
+
+Thank you for checking out this project! :)
